@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import AuthServices from "../utils/auth";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
+import Button from '@mui/material/Button'
 
 const styles = {
   container: {
@@ -37,7 +38,7 @@ export default function Header() {
   return (
     <nav style={styles.container}>
       <Link to={"/"} style={styles.undecoratedLink}>
-        <h1>Project-3 Starter Code</h1>
+        <h1>Gainz</h1>
       </Link>
       <div style={styles.buttonDiv}>
         {isAuthenticated && (
@@ -52,12 +53,17 @@ export default function Header() {
         )}
         {!isAuthenticated && (
           <Link to={"/signup"}>
-            <button style={styles.button}>Sign Up</button>
+            <Button variant="contained">Sign Up</Button>
           </Link>
         )}
         {!isAuthenticated && (
           <Link to={"/login"}>
-            <button style={styles.button}>Login</button>
+            <Button variant="contained">Login</Button>
+          </Link>
+        )}
+        {isAuthenticated && (
+          <Link to={"/workouts"}>
+            <Button variant="contained">Workouts</Button>
           </Link>
         )}
       </div>

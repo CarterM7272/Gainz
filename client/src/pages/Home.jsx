@@ -1,5 +1,6 @@
 import Page from "../components/Page";
 
+
 const headContent = (
   <>
     <title>Change Me! - Home</title>
