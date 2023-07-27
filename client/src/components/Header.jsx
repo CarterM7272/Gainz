@@ -3,6 +3,8 @@ import AuthServices from "../utils/auth";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
 import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import { ThemeProvider } from "@mui/material";
 
 const styles = {
   container: {
@@ -38,7 +40,7 @@ export default function Header() {
   return (
     <nav style={styles.container}>
       <Link to={"/"} style={styles.undecoratedLink}>
-        <h1>Gainz</h1>
+        <Typography variant="h1">Gainz</Typography>
       </Link>
       <div style={styles.buttonDiv}>
         {isAuthenticated && (
