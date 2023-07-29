@@ -4,6 +4,21 @@ const typeDefs = gql`
 
   scalar Date
 
+
+
+  type workout {
+    _id: ID!
+    chest: [
+      {
+        name: String,
+        weight: INT,
+        reps: INT,
+      }
+    ]
+    back: []
+    core: []
+  }
+
   type User {
     _id: ID!
     firstName: String
@@ -12,6 +27,7 @@ const typeDefs = gql`
     password: String!
     createdAt: String
     updatedAt: String
+    workouts: [workout]
   }
 
   type Auth {
