@@ -25,14 +25,15 @@ export default function Workout() {
 
   return (
     <Page isProtected={false} headContent={headContent}>
-      <Autocomplete
+      {/* <Autocomplete
       id="grouped-demo"
       options={props.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option) => option.firstLetter}
       getOptionLabel={(option) => option.name}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Workouts" />}
-    />
+    /> */}
+    <div>Test</div>
     </Page>
   );
 }

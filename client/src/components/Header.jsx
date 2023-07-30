@@ -63,9 +63,14 @@ export default function Header() {
             <Button variant="contained">Login</Button>
           </Link>
         )}
-        {isAuthenticated && (
-          <Link to={"/workouts"}>
+        {!isAuthenticated && (
+          <Link to={"/workout"}>
             <Button variant="contained">Workouts</Button>
+          </Link>
+        )}
+        {!isAuthenticated && (
+          <Link to={"/calorie"}>
+            <Button variant="contained">Calorie Tracker</Button>
           </Link>
         )}
       </div>
