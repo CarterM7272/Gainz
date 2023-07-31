@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 
 import Page from "../components/Page";
 import AuthService from "../utils/auth";
+import { Button, Input } from "@mui/material";
 
 const styles = {
   form: {
@@ -71,28 +72,28 @@ export default function SignUp() {
     <Page isProtected={false} headContent={headContent}>
       <div>Sign Up</div>
       <form style={styles.form} onSubmit={handleFormSubmit}>
-        <input
+        <Input
           placeholder="First Name"
           name="firstName"
           type="text"
           value={formState.firstName}
           onChange={handleChange}
         />
-        <input
+        <Input
           placeholder="Last Name"
           name="lastName"
           type="text"
           value={formState.lastName}
           onChange={handleChange}
         />
-        <input
+        <Input
           placeholder="Email"
           name="email"
           type="email"
           value={formState.email}
           onChange={handleChange}
         />
-        <input
+        <Input
           placeholder="Password"
           name="password"
           type="password"
@@ -100,13 +101,13 @@ export default function SignUp() {
           onChange={handleChange}
         />
         {loading ? (
-          <button type="submit" disabled={true} style={styles.submitBtn}>
+          <Button type="submit" variant="contained" disabled={true}>
             Loading...
-          </button>
+          </Button>
         ) : (
-          <button type="submit" style={styles.submitBtn}>
+          <Button type="submit" variant="contained">
             Submit
-          </button>
+          </Button>
         )}
       </form>
       {error && <h3>{error.message}</h3>}
