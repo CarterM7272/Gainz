@@ -25,6 +25,28 @@ const dateScalar = new GraphQLScalarType({
   },
 });
 
+const jsonScalar = new GraphQLScalarType({
+  name: 'JSON',
+  description: 'JSON custom scalar type',
+  serialize(value) {
+    return JSON.stringify(value);
+  },
+  parseValue(value) {
+    return JSON.parse(value)
+  },
+  parseLiteral(ast) {
+    switch(ast.kind) {
+      case 'StringValue':
+        return JSON.parse(ast.value);
+      case 'ObjectValue':
+        throw new Error('Object values are not supported by JSON scalar')
+      default:
+        return null;
+    }
+  },
+});
+
 module.exports = {
-  dateScalar
+  dateScalar,
+  jsonScalar
 }

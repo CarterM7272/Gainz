@@ -3,20 +3,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
   scalar Date
+  
+  scalar JSON
 
 
-
-  type workout {
-    _id: ID!
-    chest: [
-      {
-        name: String,
-        weight: INT,
-        reps: INT,
-      }
-    ]
-    back: []
-    core: []
+  type Workout {
+    bodyPart: String
+    equipment: String 
+    gifUrl: String 
+    id: String 
+    name: String 
+    target: String
   }
 
   type User {
@@ -27,7 +24,7 @@ const typeDefs = gql`
     password: String!
     createdAt: String
     updatedAt: String
-    workouts: [workout]
+    workouts: [Workout]
   }
 
   type Auth {
@@ -37,6 +34,8 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    getWorkouts(query: String!): [Workout]
+    getFromExerciseDb(queryString: String): JSON
   }
 
   type Mutation {
