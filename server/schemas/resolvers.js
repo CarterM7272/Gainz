@@ -42,7 +42,6 @@ const resolvers = {
         console.log(err);
       };
     },
-    // getWorkouts: async ()
   },
   Mutation: {
     addUser: async (parent, argObj) => {
