@@ -1,15 +1,19 @@
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
+import Drawer from "./Drawer";
 
 import Header from "./Header";
 import Footer from "./Footer";
+
+import { Stack, Container } from '@mui/material';
 
 const styles = {
   container: {
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
+    backgroundColor: "#f5f5f5"
   },
   main: {
     paddingTop: "80px",
@@ -37,13 +41,16 @@ export default function Page({
   return (
     <>
       <Helmet>{headContent}</Helmet>
-      <Header />
-      <div style={styles.container}>
-        <main style={styles.main}>
-          {isProtected && !isAuthenticated ? <div>Unauthorized</div> : children}
-        </main>
+      <Stack height={'100vh'}>
+        <Header />
+        <Stack flexGrow={1} direction={'row'}>
+          <Drawer />
+          <Container maxWidth='xl' sx={{ display: 'flex'}}>
+            {isProtected && !isAuthenticated ? <div>Unauthorized</div> : children}
+          </Container>
+        </Stack>
         <Footer />
-      </div>
+      </Stack>
     </>
   );
 }

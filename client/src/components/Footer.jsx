@@ -4,13 +4,14 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#424242",
   },
 };
 
 export default function Footer() {
   return (
     <div style={styles.container}>
-      <h5>This is the Starter Code Footer</h5>
+      <h5>Made with ❤️ and the power of bro-hood</h5>
     </div>
   );
 }
