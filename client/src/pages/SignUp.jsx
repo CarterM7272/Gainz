@@ -12,8 +12,12 @@ import { Button, Input } from "@mui/material";
 const styles = {
   form: {
     display: "flex",
-    flexDirection: "Column",
+    flexDirection: "column",
+    justifyContent: "center",
     width: "300px",
+    backgroundColor: "#424242",
+    border: "round",
+
   },
   submitBtn: {
     cursor: "pointer",
@@ -70,7 +74,8 @@ export default function SignUp() {
 
   return (
     <Page isProtected={false} headContent={headContent}>
-      <div>Sign Up</div>
+      <div 
+      >Sign Up</div>
       <form style={styles.form} onSubmit={handleFormSubmit}>
         <Input
           placeholder="First Name"

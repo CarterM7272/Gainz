@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { ThemeProvider } from "@mui/material";
+import { AppBar, Container, ThemeProvider, Toolbar, Stack } from "@mui/material";
+import UnstyledLink from "./UnstyledLink";
 
 const styles = {
   container: {
@@ -12,9 +13,10 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    position: "fixed",
+    position: "sticky",
     top: "0",
     width: "100%",
+    backgroundColor: "#424242"
   },
   buttonDiv: {
     display: "flex",
@@ -23,7 +25,7 @@ const styles = {
     alignItems: "center",
   },
   button: {
-    margin: "0.5rem",
+    margin: "1",
   },
   undecoratedLink: {
     textDecoration: "none",
@@ -38,42 +40,49 @@ export default function Header() {
   };
 
   return (
-    <nav style={styles.container}>
-      <Link to={"/"} style={styles.undecoratedLink}>
-        <Typography variant="h1">Gainz</Typography>
-      </Link>
-      <div style={styles.buttonDiv}>
-        {isAuthenticated && (
-          <Link to={"/dashboard"}>
-            <button style={styles.button}>Dashboard</button>
-          </Link>
-        )}
-        {isAuthenticated && (
-          <button onClick={handleLogout} style={styles.button}>
-            Logout
-          </button>
-        )}
-        {!isAuthenticated && (
-          <Link to={"/signup"}>
-            <Button variant="contained">Sign Up</Button>
-          </Link>
-        )}
-        {!isAuthenticated && (
-          <Link to={"/login"}>
-            <Button variant="contained">Login</Button>
-          </Link>
-        )}
-        {!isAuthenticated && (
-          <Link to={"/workout"}>
-            <Button variant="contained">Workouts</Button>
-          </Link>
-        )}
-        {!isAuthenticated && (
-          <Link to={"/calorie"}>
-            <Button variant="contained">Calorie Tracker</Button>
-          </Link>
-        )}
-      </div>
-    </nav>
-  );
+    <AppBar position='sticky'>
+      <Container maxWidth={false} disableGutters sx={{ px: 2}}>
+        <Toolbar disableGutters>
+          <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} flexGrow={1}>
+            <Stack direction={'row'} alignItems={'center'}>
+              <Link to={"/"} style={styles.undecoratedLink}>
+                <Typography variant="h2" color="#e53935"
+                >Gainz</Typography>
+              </Link>
+            </Stack>
+            <Stack direction={'row'} alignItems={'center'} spacing={2}>
+              {isAuthenticated && (
+                <Link to={"/dashboard"}>
+                  <Button>Dashboard</Button>
+                </Link>
+              )}
+              {isAuthenticated && (
+                <Button>Logout</Button>
+              )}
+              {!isAuthenticated && (
+                <UnstyledLink to={"/signup"}>
+                  <Button variant="outlined">Sign Up</Button>
+                </UnstyledLink>
+              )}
+              {!isAuthenticated && (
+                <Link to={"/login"}>
+                  <Button variant="contained" color={'secondary'} >Login</Button>
+                </Link>
+              )}
+              {!isAuthenticated && (
+                <Link to={"/workout"}>
+                  <Button variant="contained">Workouts</Button>
+                </Link>
+              )}
+              {!isAuthenticated && (
+                <Link to={"/calorie"}>
+                  <Button variant="contained">Calorie Tracker</Button>
+                </Link>
+              )}
+            </Stack>
+          </Stack>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  )
 }
