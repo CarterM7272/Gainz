@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
-const { dateScalar, jsonScalar } = require('./scalar');
+const { dateScalar } = require('./scalar');
 
 let fetch;
 (async () => {
@@ -19,7 +19,6 @@ const exerciseOptions = {
 
 const resolvers = {
   Date: dateScalar,
-  JSON: jsonScalar,
   Query: {
     me: async (parent, args, context) => {
       if (!context.user) {
@@ -27,10 +26,10 @@ const resolvers = {
       }
       return await User.findById(context.user._id)
     },
-    getFromExerciseDb: async (parent, { queryString }, context) => {
+    getFromExerciseDb: async (parent, context) => {
       try {
 
-        const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${queryString ? queryString : ''}`
+        const url = `https://exercisedb.p.rapidapi.com/exercises/`
         const options = exerciseOptions;
 
         const response = await fetch(url, options);

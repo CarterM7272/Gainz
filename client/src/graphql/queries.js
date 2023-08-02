@@ -13,3 +13,22 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_EXERCISE_BY_BODY_PART = gql`
+  query getExerciseByBodyPart {
+    getFromExerciseDb {
+      bodyPart
+      equipment 
+      gifUrl 
+      id 
+      name 
+      target
+    }
+  }
+`;
+
+
+
+
+
+
+
