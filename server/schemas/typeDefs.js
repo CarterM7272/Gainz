@@ -3,8 +3,6 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
   scalar Date
-  
-  scalar JSON
 
 
   type Workout {
@@ -34,8 +32,7 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    getWorkouts(query: String!): [Workout]
-    getFromExerciseDb(queryString: String): JSON
+    getFromExerciseDb: [Workout]
   }
 
   type Mutation {
