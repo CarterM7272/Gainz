@@ -41,7 +41,7 @@ export default function PermanentDrawerLeft() {
     <Divider />
     <List>
       {['', '', ''].map((text, index) => (
-        <ListItem key={text} disablePadding>
+        <ListItem key={index} disablePadding>
           <ListItemButton>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
