@@ -56,27 +56,27 @@ export default function Header() {
                   <Button>Dashboard</Button>
                 </Link>
               )}
-              {isAuthenticated && (
-                <Button>Logout</Button>
-              )}
-              {!isAuthenticated && (
-                <UnstyledLink to={"/signup"}>
-                  <Button variant="outlined">Sign Up</Button>
-                </UnstyledLink>
-              )}
-              {!isAuthenticated && (
-                <Link to={"/login"}>
-                  <Button variant="contained" color={'secondary'} >Login</Button>
-                </Link>
-              )}
               {!isAuthenticated && (
                 <Link to={"/workout"}>
-                  <Button variant="contained">Workouts</Button>
+                  <Button variant="contained" color={'secondary'} >Workouts</Button>
                 </Link>
               )}
               {!isAuthenticated && (
                 <Link to={"/calorie"}>
                   <Button variant="contained">Calorie Tracker</Button>
+                </Link>
+              )}
+              {isAuthenticated && (
+                <Button>Logout</Button>
+              )}
+              {!isAuthenticated && (
+                <UnstyledLink to={"/signup"}>
+                  <Button variant="contained">Sign Up</Button>
+                </UnstyledLink>
+              )}
+              {!isAuthenticated && (
+                <Link to={"/login"}>
+                  <Button variant="contained"  >Login</Button>
                 </Link>
               )}
             </Stack>
