@@ -1,32 +1,17 @@
 import Page from "../components/Page";
-// import TextField from '@mui/material/TextField';
-// import Autocomplete from '@mui/material/Autocomplete';
-
 import React, { useState } from 'react';
 import { Box, Button, Stack, TextField} from '@mui/material';
-import { QUERY_EXERCISE_BY_BODY_PART } from '../graphql/queries'; // Replace './queries' with the correct path to your 'queries.js' file
+import { QUERY_EXERCISE_BY_BODY_PART } from '../graphql/queries';
 import { client } from '../App';
 
 const headContent = (
   <>
     <title>Workouts</title>
-    <meta name="description" content="This is where I create workouts." />  
-    </>
+    <meta name="description" content="This is where I create workouts." />
+  </>
 );
 
-
-
 export default function Workout() {
-  // const props =  {
-  //   option: workouts.map((option) =>  {
-  //     const firstLetter = option.name[0].toUpperCase();
-  //     return {
-  //       firstLetter: firstLetter,
-  //       ...option,
-  //     }
-  //   }),
-  // }
-
   const [search, setSearch] = useState('');
   const [exercises, setExercises] = useState([]);
 
@@ -39,19 +24,16 @@ export default function Workout() {
         });
 
         const exercisesFromServer = data.getFromExerciseDb;
+        const searchedExercises = exercisesFromServer.filter(
+          (exercise) =>
+            exercise.name.toLowerCase().includes(search) ||
+            exercise.target.toLowerCase().includes(search) || 
+            exercise.equipment.toLowerCase().includes(search) ||
+            exercise.bodyPart.toLowerCase().includes(search)
+        );
 
-      // Filter the exercises based on the search input
-      const searchedExercises = exercisesFromServer.filter(
-        (exercise) =>
-          exercise.name.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search)
-      );
-
-      // Update the state with the filtered exercises
-      setExercises(searchedExercises || []);
-      setSearch('');
+        setExercises(searchedExercises,  []);
+        setSearch('');
         console.log('Server Response:', data);
 
       } catch (error) {
@@ -59,7 +41,6 @@ export default function Workout() {
       }
     }
   };
-  
 
   return (
     <Page headContent={headContent}>
@@ -95,22 +76,29 @@ export default function Workout() {
             </Button>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap'}}>
-            {/* Render the fetched data */}
-          {exercises.slice(0, 10).map((exercise) => (
-            <Box key={exercise.name} sx={{ border: '3px solid blue', margin: '3px'}}>
-              <h3>{exercise.name}</h3>
-              <p>{exercise.bodyPart}</p>
-              <p>{exercise.target}</p>
-              <img src={exercise.gifUrl} alt={exercise.equipment} />
-            </Box>
+            {exercises.slice(0, 10).map((exercise) => (
+              <Box 
+                key={exercise.name} 
+                sx={{ 
+                  border: '2px solid black', 
+                  margin: '3px', 
+                  maxWidth: '200px',
+                  borderRadius: '15px',
+                  padding: '15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <h3>{exercise.name}</h3>
+                <p>{exercise.bodyPart}</p>
+                <p>{exercise.target}</p>
+                <img src={exercise.gifUrl} alt={exercise.equipment} style={{maxWidth: '100%'}}/>
+              </Box>
             ))}
           </Box>
-          
         </Stack>
     </Page>
   );
 }
-
-// const workouts  = [
-//   {name: 'Bench Press', target: 'Chest'}, {name: 'Pushup', target: 'Chest/Triceps'}, {name: 'calve raises', target: "Carson's height"}
-// ];
