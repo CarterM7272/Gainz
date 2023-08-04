@@ -109,8 +109,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -162,7 +161,6 @@ export default function Login() {
               </Grid>
             </form>
           </Box>
-        </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
   </Page>
