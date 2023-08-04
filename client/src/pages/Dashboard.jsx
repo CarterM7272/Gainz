@@ -10,7 +10,17 @@ const headContent = (
 export default function Dashboard() {
   return (
     <Page isProtected={true} headContent={headContent}>
-      <div>Dashboard</div>
+      <div sx={{display: 'flex', flexWrap: 'wrap'}}>
+        <div className="container">
+          <div>Dashboard</div>
+          <div>TODO</div>
+          <div>Add Calories for the week</div>
+          <div>Add Favorite Work-Outs</div>
+          <div>Add Goals</div>
+          <div>Add Personal Records</div>
+
+        </div>
+      </div>
     </Page>
   );
 }

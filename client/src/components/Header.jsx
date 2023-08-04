@@ -51,27 +51,30 @@ export default function Header() {
               </Link>
             </Stack>
             <Stack direction={'row'} alignItems={'center'} spacing={2}>
+              {/*Is Logged-In */}
               {isAuthenticated && (
                 <Link to={"/dashboard"}>
-                  <Button>Dashboard</Button>
+                  <Button variant="contained">Dashboard</Button>
                 </Link>
               )}
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Link to={"/workout"}>
-                  <Button variant="contained" color={'secondary'} >Workouts</Button>
+                  <Button variant="contained"  >Workouts</Button>
                 </Link>
               )}
-              {!isAuthenticated && (
+              {isAuthenticated && (
                 <Link to={"/calorie"}>
                   <Button variant="contained">Calorie Tracker</Button>
                 </Link>
               )}
               {isAuthenticated && (
-                <Button>Logout</Button>
+                <Button variant="contained" color={'secondary'}>Logout</Button>
               )}
+
+              {/*Is Not Logged-In */}
               {!isAuthenticated && (
                 <UnstyledLink to={"/signup"}>
-                  <Button variant="contained">Sign Up</Button>
+                  <Button variant="contained" color={'secondary'}>Sign Up</Button>
                 </UnstyledLink>
               )}
               {!isAuthenticated && (
