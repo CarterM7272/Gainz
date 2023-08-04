@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import AuthServices from "../utils/auth";
+import AuthService from "../utils/auth";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
 import Button from '@mui/material/Button'
@@ -36,7 +36,7 @@ export default function Header() {
   const { isAuthenticated } = useSelector(getUser());
 
   const handleLogout = (e) => {
-    AuthServices.logout();
+    AuthService.logout();
   };
 
   return (
@@ -68,12 +68,12 @@ export default function Header() {
                 </Link>
               )}
               {isAuthenticated && (
-                <Button variant="contained" color={'secondary'}>Logout</Button>
+                <Button variant="contained" color={'secondary'} onClick={handleLogout}>Logout</Button>
               )}
 
               {/*Is Not Logged-In */}
               {!isAuthenticated && (
-                <UnstyledLink to={"/signup"}>
+                <UnstyledLink to={"/signUp"}>
                   <Button variant="contained" color={'secondary'}>Sign Up</Button>
                 </UnstyledLink>
               )}
