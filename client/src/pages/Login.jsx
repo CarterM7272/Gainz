@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -22,7 +21,6 @@ import { Navigate } from "react-router-dom";
 
 import Page from "../components/Page";
 import AuthService from "../utils/auth";
-import UnstyledLink from '../components/UnstyledLink';
 
 function Copyright(props) {
   return (
@@ -46,7 +44,7 @@ const headContent = (
 
 
 export default function Login() {
-  const [loginUser, { error, data, loading }] = useMutation(LOGIN_USER);
+  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
   const { isAuthenticated } = useSelector(getUser());
 
   const [formState, setFormState] = useState({
@@ -80,16 +78,6 @@ export default function Login() {
   if (isAuthenticated) {
     return <Navigate to={"/dashboard"} />;
   }
-
-// export default function SignIn() {
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       email: data.get('email'),
-//       password: data.get('password'),
-//     });
-//   };
 
   return (
   <Page isProtected={false} headContent={headContent}>
@@ -163,7 +151,7 @@ export default function Login() {
           </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      {error && <h3>{error.message}</h3>}
   </Page>
-
   );
 }

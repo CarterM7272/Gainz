@@ -44,7 +44,9 @@ export default function Page({
       <Stack height={'100vh'}>
         <Header />
         <Stack flexGrow={1} direction={'row'}>
+        {isAuthenticated && (
           <Drawer />
+        )}
           <Container maxWidth='xl' sx={{ display: 'flex'}}>
             {isProtected && !isAuthenticated ? <div>Unauthorized</div> : children}
           </Container>

@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 
 import Page from "../components/Page";
 import AuthService from "../utils/auth";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -23,9 +23,9 @@ import Container from '@mui/material/Container';
   function Copyright(props) {
       return (
           <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'Make those '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Gainz
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -43,7 +43,7 @@ const headContent = (
 );
 
 export default function SignUp() {
-  const [addUser, { error, data, loading }] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
   const { isAuthenticated } = useSelector(getUser());
 
   const [formState, setFormState] = useState({
@@ -170,56 +170,7 @@ export default function SignUp() {
           </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
+      {error && <h3>{error.message}</h3>}
   </Page>
-
   );
 }
-
-
-//   return (
-//     <Page isProtected={false} headContent={headContent}>
-//       <div 
-//       >Sign Up</div>
-//       <form style={styles.form} onSubmit={handleFormSubmit}>
-//         <Input
-//           placeholder="First Name"
-//           name="firstName"
-//           type="text"
-//           value={formState.firstName}
-//           onChange={handleChange}
-//         />
-//         <Input
-//           placeholder="Last Name"
-//           name="lastName"
-//           type="text"
-//           value={formState.lastName}
-//           onChange={handleChange}
-//         />
-//         <Input
-//           placeholder="Email"
-//           name="email"
-//           type="email"
-//           value={formState.email}
-//           onChange={handleChange}
-//         />
-//         <Input
-//           placeholder="Password"
-//           name="password"
-//           type="password"
-//           value={formState.password}
-//           onChange={handleChange}
-//         />
-//         {loading ? (
-//           <Button type="submit" variant="contained" disabled={true}>
-//             Loading...
-//           </Button>
-//         ) : (
-//           <Button type="submit" variant="contained">
-//             Submit
-//           </Button>
-//         )}
-//       </form>
-//       {error && <h3>{error.message}</h3>}
-//     </Page>
-//   );
-// }
