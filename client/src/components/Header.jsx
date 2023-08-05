@@ -52,22 +52,22 @@ export default function Header() {
             </Stack>
             <Stack direction={'row'} alignItems={'center'} spacing={2}>
               {/*Is Logged-In */}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Link to={"/dashboard"}>
                   <Button variant="contained">Dashboard</Button>
                 </Link>
               )}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Link to={"/workout"}>
                   <Button variant="contained"  >Workouts</Button>
                 </Link>
               )}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Link to={"/calorie"}>
                   <Button variant="contained">Calorie Tracker</Button>
                 </Link>
               )}
-              {isAuthenticated && (
+              {!isAuthenticated && (
                 <Button variant="contained" color={'secondary'} onClick={handleLogout}>Logout</Button>
               )}
 

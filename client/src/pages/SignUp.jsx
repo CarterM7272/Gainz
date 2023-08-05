@@ -24,7 +24,7 @@ import Container from '@mui/material/Container';
       return (
           <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Make those '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="secondary.main" href="https://mui.com/">
         Gainz
       </Link>{' '}
       {new Date().getFullYear()}
@@ -95,7 +95,7 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography color= 'inherit' component="h1" variant="h5">
             Sign up
           </Typography>
           <form onSubmit={handleFormSubmit} component="form" noValidate  sx={{ mt: 3 }}>
@@ -156,6 +156,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              color="secondary"
             >
               Sign Up
             </Button>

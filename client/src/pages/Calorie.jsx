@@ -39,7 +39,7 @@ return (
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="h3" color="#e53935" sx={{ borderBottom: '1.5px solid black', padding: 2, marginBottom: 3, borderRadius: '10px' }}>
+        <Typography variant="h2" color="#e53935" sx={{ borderBottom: '1.5px solid black', padding: 2, marginBottom: 3, borderRadius: '10px' }}>
           Calorie Tracker
         </Typography>
         {input.map((field, index) => (
