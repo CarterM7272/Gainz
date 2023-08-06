@@ -9,6 +9,14 @@ export const QUERY_ME = gql`
       email
       createdAt
       updatedAt
+      workouts {
+        id
+        name
+        bodyPart
+        target
+        equipment
+        gifUrl
+      }
     }
   }
 `;

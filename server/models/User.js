@@ -22,6 +22,12 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    workouts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Workout',
+      },
+    ],
     createdAt: {
       type: Date,
       default: Date.now,
