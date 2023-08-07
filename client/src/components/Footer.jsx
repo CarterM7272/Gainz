@@ -11,7 +11,7 @@ const styles = {
 export default function Footer() {
   return (
     <div style={styles.container}>
-      <h5>Made with ❤️ and the power of bro-hood</h5>
+      <h5 color="#e3f2fd">Made with ❤️ and the power of bro-hood</h5>
     </div>
   );
 }
