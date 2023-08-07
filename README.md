@@ -10,11 +10,11 @@ Table of Contents
 
 
 Installation
-To install, please open the terminal in the Gainz root folder, the run the command "NPM i". Once the node_modules and lock.json file and folders are installed, run the command "npm run install". This will install the proper files into the Client and Server folders. To run as intended, use the "npm run start" command, this will bring up the Gainz website for your personal use!
+To install, please open the terminal in the Gainz root folder, then run the command "NPM i". Once the node_modules and lock.json files and folders are installed, run the command "npm run install". This will install the proper files into the Client and Server folders. To run as intended, use the "npm run start" command, this will bring up the Gainz website for your personal use!
 
 
 Usage
-The Gainz website has many uses, one of my favorite is the Calorie Tracker! It allows you to input either each of your meals, or each item and gives you a total calories. 
+The Gainz website has many uses, one of my favorite is the Calorie Tracker! It allows you to input either each of your meals or each item and gives you total calories. 
 [Calorie Tracker](assets/Calorie.png)
 
 Another use is our workout page! You can search almost any workout and it will give you a video of how to do the exercise. 
