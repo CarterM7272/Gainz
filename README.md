@@ -1,15 +1,19 @@
-## Gainz
+# Gainz
+
 ## Description
+
 Gainz is a powerful and user-friendly workout website designed to help fitness enthusiasts of all levels find and create their ideal workout routines. Whether you're a beginner taking your first steps into the world of fitness or an experienced athlete looking to switch up your training regimen, Gainz has you covered.
 
-## Table of Contents
-[Installation](#installation)
-[Usage](#usage)
-[Credits](#credits)
-[License](#license)
+## Table of Contents 
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
 
 ## Installation
+
 To install, please open the terminal in the Gainz root folder, the run the command "NPM i". Once the node_modules and lock.json file and folders are installed, run the command "npm run install". This will install the proper files into the Client and Server folders. To run as intended, use the "npm run start" command, this will bring up the Gainz website for your personal use!
 
 
@@ -31,5 +35,11 @@ Senior Front-End Developer, Carson Kennedy. https://github.com/Carsov2
 Senior Front-End Developer, Fernando Collazo-Abadía. https://github.com/fcollazoabadia
 Junior Front-End Developer, Gerald McPherson. https://github.com/GerryRaldO
 
-License
+## License
+
 Gainz is released under the MIT License.
+
+
+
+
+
