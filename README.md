@@ -18,7 +18,6 @@ To install, please open the terminal in the Gainz root folder, the run the comma
 
 
 ## Usage
-
 The Gainz website has many uses, one of my favorite is the Calorie Tracker! It allows you to input either each of your meals, or each item and gives you a total calories. 
 [Calorie Tracker](assets/Calorie.png)
 
@@ -30,7 +29,6 @@ You can even save your favorite workouts to the dashboard. So you have your work
 
 
 ## Credits
-
 Senior Back-End Developer, Jeffrey Taylor. https://github.com/jtpheonix13
 Senior Full-Stack Developer, Carter Markham. https://github.com/CarterM7272
 Senior Front-End Developer, Carson Kennedy. https://github.com/Carsov2
