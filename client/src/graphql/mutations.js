@@ -31,3 +31,42 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const SAVE_WORKOUT = gql`
+  mutation SaveWorkoutMutation(
+    $userId: ID!
+    $bodyPart: String!
+    $equipment: String
+    $gifUrl: String
+    $name: String!
+    $target: String!
+  ) {
+    saveWorkout(
+      userId: $userId
+      bodyPart: $bodyPart
+      equipment: $equipment
+      gifUrl: $gifUrl
+      name: $name
+      target: $target
+    ) {
+      bodyPart
+      equipment
+      gifUrl
+      id
+      name
+      target
+    }
+  }
+`;
+
+export const DELETE_WORKOUT = gql`
+  mutation deleteWorkout($workoutId: ID!) {
+    deleteWorkout(workoutId: $workoutId) {
+      id
+      name
+      bodyPart
+      target
+      equipment
+      gifUrl
+    }
+  }
+`;

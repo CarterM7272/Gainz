@@ -1,8 +1,10 @@
 import Page from "../components/Page";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Stack, TextField} from '@mui/material';
-import { QUERY_EXERCISE_BY_BODY_PART } from '../graphql/queries';
+import { QUERY_EXERCISE_BY_BODY_PART, QUERY_ME } from '../graphql/queries';
 import { client } from '../App';
+import { useMutation, useQuery } from '@apollo/client';
+import { SAVE_WORKOUT } from "../graphql/mutations";
 
 const headContent = (
   <>
@@ -14,6 +16,16 @@ const headContent = (
 export default function Workout() {
   const [search, setSearch] = useState('');
   const [exercises, setExercises] = useState([]);
+
+  const [saveWorkout] = useMutation(SAVE_WORKOUT);
+
+  const { loading: userLoading, error: userError, data: userData, refetch } = useQuery(QUERY_ME);
+
+  useEffect(() => {
+    if(userData) {
+      console.log('User ID: ', userData.me._id);
+    }
+  }, [userData]);
 
   const handleSearch = async () => {
     if (search) {
@@ -34,11 +46,33 @@ export default function Workout() {
 
         setExercises(searchedExercises,  []);
         setSearch('');
-        console.log('Server Response:', data);
+        console.log('Server Response:', searchedExercises);
 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+    }
+  };
+
+  const handleSaveWorkout = async (workout) => {
+    try {
+      if (userData && userData.me) {
+        const { data } = await saveWorkout({
+          variables: {
+            userId: userData.me._id,
+            bodyPart: workout.bodyPart,
+            equipment: workout.equipment,
+            gifUrl: workout.gifUrl,
+            name: workout.name,
+            target: workout.target,
+          }
+        });
+        console.log('Workout Saved.');
+
+        refetch();
+      }
+    } catch (error) {
+      console.error('Error Saving Workout: ', error.message);
     }
   };
 
@@ -95,6 +129,7 @@ export default function Workout() {
                 <p>{exercise.bodyPart}</p>
                 <p>{exercise.target}</p>
                 <img src={exercise.gifUrl} alt={exercise.equipment} style={{maxWidth: '100%'}}/>
+                <Button onClick={() => handleSaveWorkout(exercise)}>Save Exercise</Button>
               </Box>
             ))}
           </Box>

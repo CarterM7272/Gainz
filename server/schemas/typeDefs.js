@@ -38,7 +38,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(firstName: String, lastName: String, email: String!, password: String!): Auth
     loginUser(email: String!, password: String!): Auth
-  }
+    saveWorkout(userId: ID!, bodyPart: String!, equipment: String, gifUrl: String, name: String!, target: String!): Workout  
+    deleteWorkout(workoutId: ID!): Workout }
 `;
 
 module.exports = typeDefs;

@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Workout } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const { dateScalar } = require('./scalar');
@@ -24,7 +24,7 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError('Not logged in');
       }
-      return await User.findById(context.user._id)
+      return await User.findById(context.user._id).populate('workouts');
     },
     getFromExerciseDb: async (parent, context) => {
       try {
@@ -70,7 +70,68 @@ const resolvers = {
 
       return { token, user };
     },
-  }
+    saveWorkout: async (_, { userId, bodyPart, equipment, gifUrl, name, target }, context) => {
+      // Check if the user is authenticated, similar to other mutations
+      if (!context.user) {
+        throw new AuthenticationError('Not logged in');
+      }
+
+      try {
+        // Create a new workout object
+        const newWorkout = new Workout({
+          bodyPart,
+          equipment,
+          gifUrl,
+          name,
+          target,
+          user: context.user._id,
+        });
+
+        // Save the workout to the database
+        const savedWorkout = await newWorkout.save();
+
+        const user = await User.findById(userId);
+
+        if (!user || user._id.toString() !== context.user._id.toString()) {
+          throw new AuthenticationError('You are not authorized.');
+        }
+
+        user.workouts.push(savedWorkout._id);
+        await user.save();
+
+        // Return the saved workout
+        return savedWorkout;
+      } catch (err) {
+        console.log(err);
+        throw new UserInputError('Failed to save workout.');
+      }
+    },
+    deleteWorkout: async (_, { workoutId }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('Not Logged In');
+      }
+
+      try {
+        const workout = await Workout.findById(workoutId);
+
+        if (!workout || workout.user.toString() !== context.user._id.toString()) {
+          throw new AuthenticationError('You are not authorized');
+        }
+
+        const user = await User.findById(context.user._id);
+        user.workouts.pull(workoutId);
+        await user.save();
+
+        await Workout.findByIdAndDelete(workoutId);
+
+        return workout;
+
+      } catch (err) {
+        console.log(err);
+        throw new UserInputError('Failed to delete workout.')
+      }
+    }
+  },
 };
 
 module.exports = resolvers;
