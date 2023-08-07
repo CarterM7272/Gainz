@@ -39,17 +39,6 @@ export default function Dashboard() {
 
   return (
     <Page isProtected={true} headContent={headContent}>
-      <div sx={{display: 'flex', flexWrap: 'wrap'}}>
-        <div className="container">
-          <div>Dashboard</div>
-          <div>TODO</div>
-          <div>Add Calories for the week</div>
-          <div>Add Favorite Work-Outs</div>
-          <div>Add Goals</div>
-          <div>Add Personal Records</div>
-
-        </div>
-      </div>
       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap'}}>
           <h3>Saved Workouts</h3>
             {workouts.map((exercise) => (

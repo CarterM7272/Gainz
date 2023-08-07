@@ -3,24 +3,15 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Stack } from "@mui/material";
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../graphql/mutations";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/slices/userSlice";
 import { Navigate } from "react-router-dom";
-
-import AuthService from "../utils/auth";
 
 
 const headContent = (
@@ -44,36 +35,10 @@ function Copyright(props) {
 }
 
 export default function Login() {
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
   const { isAuthenticated } = useSelector(getUser());
 
-  const [formState, setFormState] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await loginUser({
-        variables: { ...formState },
-      });
-
-      AuthService.login(data.loginUser.token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   if (isAuthenticated) {
     return <Navigate to={"/dashboard"} />;
@@ -106,7 +71,6 @@ export default function Login() {
           a fitness app designed to streamline your workout experience. Seamlessly navigate through an extensive exercise compendium categorized by muscle groups, ensuring targeted and effective training sessions. Then monitor and optimize your nutritional intake in real-time with the integrated calorie tracker.
           </Typography>
           <Typography sx={{ fontWeight: 'bold', m: 1 }}> Personalization is key – save and access your favored workout routines with ease, tailoring your regimen to fit your unique goals. Our user-friendly interface facilitates swift navigation, making it effortless to discover new exercises, track your calorie intake, and curate a collection of go-to workouts. Find your new fitness routine today with our app, as it empowers you to achieve your aspirations through a fusion of exercise guidance, nutritional insights, and workout customization. Your path to a healthier, stronger you starts here.</Typography>
-            <form onSubmit={handleFormSubmit} component="form" noValidate sx={{ mt: 1 }}>
             <Stack direction={'row'} alignItems={'center'} spacing={2}>
             {!isAuthenticated && (
                 <Link to={"/signUp"}>
@@ -120,11 +84,9 @@ export default function Login() {
                 </Link>
               )}
             </Stack>
-            </form>
           </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-      {error && <h3>{error.message}</h3>}
   </Page>
   );
 }
